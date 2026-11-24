@@ -1,0 +1,190 @@
+# Admin panel (Decap CMS) for the Rivet.Co store — open https://YOUR-SITE/admin/
+# Every "Publish" saves to GitHub, and Netlify updates the live site about a minute later.
+
+backend:
+  name: git-gateway
+  branch: main
+
+site_url: /
+display_url: /
+logo_url: /assets/favicon.svg
+locale: en
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: store
+    label: Store
+    editor:
+      preview: false
+    files:
+      # ---------------- PRODUCTS ----------------
+      - name: products
+        label: Products
+        file: content/products.json
+        fields:
+          - name: products
+            label: Products
+            label_singular: Product
+            widget: list
+            summary: "{{fields.name}} — {{fields.color}} — LE {{fields.price}}"
+            collapsed: true
+            add_to_top: true
+            fields:
+              - { name: name, label: Product name, widget: string }
+              - { name: color, label: Colour, widget: string, required: false, hint: "e.g. Jet Black. Leave empty if the product has no colour options." }
+              - name: id
+                label: Web address ID
+                widget: string
+                pattern: ["^[a-z0-9]+(-[a-z0-9]+)*$", "Lowercase letters, numbers and dashes only, e.g. boxy-fit-t-shirt-black"]
+                hint: "Must be unique. Lowercase with dashes, e.g. boxy-fit-t-shirt-black. Don't change it after launch (it breaks links)."
+              - { name: group, label: Colour group, widget: string, required: false, hint: "Give all colours of the same item the same group (e.g. boxy-fit-t-shirt) so customers can switch colours on the product page." }
+              - name: gender
+                label: Category
+                widget: select
+                default: unisex
+                options: [{ label: Men, value: men }, { label: Women, value: women }, { label: "Unisex (shows in both)", value: unisex }]
+              - name: collections
+                label: Collections
+                widget: relation
+                collection: store
+                file: settings
+                search_fields: ["collections.*.title"]
+                display_fields: ["collections.*.title"]
+                value_field: "collections.*.slug"
+                multiple: true
+                required: false
+              - { name: price, label: "Price (EGP)", widget: number, value_type: float, min: 0 }
+              - { name: compare_at_price, label: "Original price before sale (EGP)", widget: number, value_type: float, min: 0, required: false, hint: "Only fill this in when the item is on sale. It shows crossed out next to the price." }
+              - name: sizes
+                label: Sizes and stock
+                label_singular: Size
+                widget: list
+                summary: "{{fields.size}} — in stock: {{fields.in_stock}}"
+                fields:
+                  - { name: size, label: Size, widget: string }
+                  - { name: in_stock, label: In stock, widget: boolean, default: true }
+              - name: images
+                label: Photos
+                label_singular: Photo
+                widget: list
+                hint: "The first photo is the main one. The second shows when shoppers hover."
+                field: { name: image, label: Photo, widget: image }
+              - { name: description, label: Description, widget: text }
+              - name: details
+                label: Details (bullet points)
+                label_singular: Detail
+                widget: list
+                required: false
+                field: { name: detail, label: Detail, widget: string }
+              - { name: featured, label: Show on home page, widget: boolean, default: false }
+
+      # ---------------- HOME PAGE ----------------
+      - name: home
+        label: Home page
+        file: content/home.json
+        fields:
+          - name: hero
+            label: Main banner
+            widget: object
+            fields:
+              - { name: image, label: Image, widget: image }
+              - { name: heading, label: Heading, widget: string }
+              - { name: subheading, label: Subheading, widget: string, required: false }
+              - { name: button_text, label: Button text, widget: string, required: false }
+              - { name: button_link, label: Button link, widget: string, default: /shop.html }
+          - { name: featured_heading, label: Products section heading, widget: string, default: New Arrivals }
+          - name: slides
+            label: Slideshow
+            label_singular: Slide
+            widget: list
+            required: false
+            fields:
+              - { name: image, label: Image, widget: image }
+              - { name: title, label: Title, widget: string }
+              - { name: button_text, label: Button text, widget: string, required: false }
+              - { name: link, label: Button link, widget: string, hint: "e.g. /shop.html?collection=new-arrivals" }
+          - { name: gender_heading, label: Shop-by-gender heading, widget: string, default: Shop by gender }
+          - { name: men_image, label: Men tile image, widget: image }
+          - { name: women_image, label: Women tile image, widget: image }
+          - name: badges
+            label: Trust badges
+            label_singular: Badge
+            widget: list
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: text, label: Text, widget: string }
+
+      # ---------------- SETTINGS ----------------
+      - name: settings
+        label: Store settings
+        file: content/settings.json
+        fields:
+          - { name: store_name, label: Store name, widget: string }
+          - { name: tagline, label: Footer tagline, widget: text, required: false }
+          - { name: announcement, label: Top announcement bar, widget: string, required: false, hint: "Leave empty to hide it." }
+          - { name: currency_label, label: Currency label, widget: string, default: LE }
+          - { name: email, label: Email, widget: string }
+          - { name: phone, label: Phone, widget: string }
+          - { name: whatsapp, label: "WhatsApp number (digits only, with country code)", widget: string, required: false, hint: "e.g. 201140824016" }
+          - { name: facebook, label: Facebook link, widget: string, required: false }
+          - { name: instagram, label: Instagram link, widget: string, required: false }
+          - { name: tiktok, label: TikTok link, widget: string, required: false }
+          - name: shipping
+            label: Shipping
+            widget: object
+            fields:
+              - { name: free_over, label: "Free shipping on orders over (EGP)", widget: number, value_type: float, min: 0, hint: "Set to 0 to turn free shipping off." }
+              - { name: default_fee, label: "Shipping fee for all other governorates (EGP)", widget: number, value_type: float, min: 0 }
+              - { name: default_eta, label: Delivery time for other governorates, widget: string }
+              - name: zones
+                label: Special shipping zones
+                label_singular: Zone
+                widget: list
+                fields:
+                  - { name: name, label: Zone name, widget: string }
+                  - { name: governorates, label: Governorates, widget: select, multiple: true, options: ["Cairo", "Giza", "Alexandria", "Qalyubia", "Sharqia", "Dakahlia", "Gharbia", "Monufia", "Beheira", "Kafr El Sheikh", "Damietta", "Port Said", "Ismailia", "Suez", "Faiyum", "Beni Suef", "Minya", "Asyut", "Sohag", "Qena", "Luxor", "Aswan", "Red Sea", "New Valley", "Matrouh", "North Sinai", "South Sinai"] }
+                  - { name: fee, label: "Fee (EGP)", widget: number, value_type: float, min: 0 }
+                  - { name: eta, label: Delivery time, widget: string }
+          - name: collections
+            label: Collections
+            label_singular: Collection
+            widget: list
+            fields:
+              - { name: title, label: Title, widget: string }
+              - name: slug
+                label: Web address ID
+                widget: string
+                pattern: ["^[a-z0-9]+(-[a-z0-9]+)*$", "Lowercase letters, numbers and dashes only"]
+              - { name: description, label: Description, widget: string, required: false }
+              - { name: image, label: Image, widget: image, required: false }
+
+      # ---------------- FAQ ----------------
+      - name: faq
+        label: FAQs
+        file: content/faq.json
+        fields:
+          - name: items
+            label: Questions
+            label_singular: Question
+            widget: list
+            summary: "{{fields.question}}"
+            fields:
+              - { name: question, label: Question, widget: string }
+              - { name: answer, label: Answer, widget: text }
+
+      # ---------------- POLICIES ----------------
+      - name: policies
+        label: Policies
+        file: content/policies.json
+        fields:
+          - name: policies
+            label: Policies
+            label_singular: Policy
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: slug, label: Web address ID, widget: string, hint: "Keep shipping-policy, refund-policy, privacy-policy and terms-of-service as they are — the site links to them." }
+              - { name: body, label: Text, widget: text, hint: "Start a line with ## for a heading and - for a bullet point. Leave a blank line between paragraphs." }

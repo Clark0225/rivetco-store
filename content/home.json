@@ -1,0 +1,27 @@
+{
+  "hero": {
+    "image": "https://rivetcoeg.com/cdn/shop/files/9fc9dc2b-da0c-4d80-80d4-e61002e3ba4b_whatsapp_image_2026-09-01_at_5.04.25_am_4_a754c159-49a9-4e2c-8ac8-07ee64f8fd6f.png?v=1788664964&width=2400",
+    "heading": "REFINED. MODERN. TIMELESS.",
+    "subheading": "Designed with intention, Made to last.",
+    "button_text": "SHOP NOW",
+    "button_link": "/shop.html"
+  },
+  "slides": [
+    {
+      "image": "https://rivetcoeg.com/cdn/shop/files/921d5e16-4d75-49e8-aedd-61b146fe588f_enhanced_whatsapp_image_2026-09-01_at_5.04.26_am_2_4fe6b636-cdb4-414c-8fbc-7f90a3844316.png?v=1788664469&width=2400",
+      "title": "New Arrivals",
+      "button_text": "Explore",
+      "link": "/shop.html?collection=new-arrivals"
+    }
+  ],
+  "featured_heading": "New Arrivals",
+  "gender_heading": "Shop by gender",
+  "men_image": "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/d459fd09-65e1-4cb5-9be0-e3331e1ffb08_enhanced_whatsapp_image_2026-09-01_at_5.04.25_am_ce94e2c8-18b4-40eb-a866-fd6a1b9cbb06.jpg?v=1788663902",
+  "women_image": "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/1_965ed121-3bd6-4f76-bd70-c7a2f15f4968.png?v=1790134023",
+  "badges": [
+    { "title": "Customer Support", "text": "Real people, ready to help." },
+    { "title": "Secure Payment", "text": "Visa, Mastercard, Meeza and Apple Pay." },
+    { "title": "Easy Returns", "text": "14 days from delivery." },
+    { "title": "Free Shipping", "text": "On orders over 1000 EGP." }
+  ]
+}

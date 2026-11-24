@@ -1,0 +1,173 @@
+{
+  "products": [
+    {
+      "id": "f-wide-leg-sweatpants-jet-black",
+      "name": "F-Wide-Leg Sweatpants",
+      "color": "Jet Black",
+      "group": "f-wide-leg-sweatpants",
+      "gender": "women",
+      "collections": ["new-arrivals", "bottoms"],
+      "price": 799,
+      "compare_at_price": 1099,
+      "sizes": [
+        { "size": "S", "in_stock": true },
+        { "size": "M", "in_stock": true },
+        { "size": "L", "in_stock": true }
+      ],
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/3_637e252e-2182-4c5b-993b-c0e6c7c2bf76.png?v=1790133619",
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/4_cc4a1217-0a90-40e8-bdb4-0e299c0f4760.png?v=1790133618",
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/1_965ed121-3bd6-4f76-bd70-c7a2f15f4968.png?v=1790134023",
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/2_65c6981f-3232-4d32-9432-f7955b397cb4.png?v=1790133618",
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/5.png?v=1790133618"
+      ],
+      "description": "Everyday wide-leg sweatpants in a mid-weight, 100% cotton fabric made for year-round wear. Elasticated waistband with a concealed internal drawstring and a minimal, understated graphic.",
+      "details": ["Fit: Relaxed wide-leg", "Colour: Jet Black", "Fabric: 100% cotton"],
+      "featured": true
+    },
+    {
+      "id": "f-wide-leg-sweatpants-light-heather-grey",
+      "name": "F-Wide-Leg Sweatpants",
+      "color": "Light Heather Grey",
+      "group": "f-wide-leg-sweatpants",
+      "gender": "women",
+      "collections": ["new-arrivals", "bottoms"],
+      "price": 799,
+      "compare_at_price": 1099,
+      "sizes": [
+        { "size": "S", "in_stock": true },
+        { "size": "M", "in_stock": true },
+        { "size": "L", "in_stock": true }
+      ],
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/4_96f47ba5-ee6b-4f02-a59f-56abb3abfc47.png?v=1790132670",
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/3_83dcb913-7599-4de6-a476-fb40371d417d.png?v=1790132670",
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/1_b7cdb85c-9b46-4b26-b3ce-df44d9dd898f.png?v=1790132671",
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/2_be443351-6610-473a-a677-37e62b39dd7c.png?v=1790132671"
+      ],
+      "description": "Everyday wide-leg sweatpants in a mid-weight, 100% cotton fabric made for year-round wear. Elasticated waistband with a concealed internal drawstring and a minimal, understated graphic.",
+      "details": ["Fit: Relaxed wide-leg", "Colour: Light Heather Grey", "Fabric: 100% cotton"],
+      "featured": true
+    },
+    {
+      "id": "m-wide-leg-sweatpants-jet-black",
+      "name": "M-Wide-Leg Sweatpants",
+      "color": "Jet Black",
+      "group": "m-wide-leg-sweatpants",
+      "gender": "men",
+      "collections": ["bottoms"],
+      "price": 799,
+      "compare_at_price": 1099,
+      "sizes": [
+        { "size": "S", "in_stock": true },
+        { "size": "M", "in_stock": true },
+        { "size": "L", "in_stock": true }
+      ],
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/d459fd09-65e1-4cb5-9be0-e3331e1ffb08_enhanced_whatsapp_image_2026-09-01_at_5.04.25_am_ce94e2c8-18b4-40eb-a866-fd6a1b9cbb06.jpg?v=1788663902",
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/0ae36e57-bb5e-42b6-8354-00f5f6916227_enhanced_whatsapp_image_2026-09-01_at_5.04.26_am_1.jpg?v=1788663902",
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/6bcf8777-97d7-4152-a730-d0c4d42e4799_whatsapp_image_2026-09-01_at_5.04.26_am_3.jpg?v=1788663902",
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/9fc9dc2b-da0c-4d80-80d4-e61002e3ba4b_whatsapp_image_2026-09-01_at_5.04.25_am_4.jpg?v=1788663902"
+      ],
+      "description": "Everyday wide-leg sweatpants in a mid-weight, 100% cotton fabric made for year-round wear. Elasticated waistband with a concealed internal drawstring and a minimal, understated graphic.",
+      "details": ["Fit: Relaxed wide-leg", "Colour: Jet Black", "Fabric: 100% cotton"],
+      "featured": true
+    },
+    {
+      "id": "m-wide-leg-sweatpants-light-heather-grey",
+      "name": "M-Wide-Leg Sweatpants",
+      "color": "Light Heather Grey",
+      "group": "m-wide-leg-sweatpants",
+      "gender": "men",
+      "collections": ["bottoms"],
+      "price": 799,
+      "compare_at_price": 1099,
+      "sizes": [
+        { "size": "S", "in_stock": true },
+        { "size": "M", "in_stock": true },
+        { "size": "L", "in_stock": true }
+      ],
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/eee1735d-7d23-4d1a-9f25-ca4d6342128c_enhanced_gemini_generated_image_yfk84lyfk84lyfk8.jpg?v=1788658006",
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/285ec36f-3c2d-4234-b871-2373f87811d0_gemini_generated_image_d2jlurd2jlurd2jl_f0511abd-88f7-4586-bdc1-238b2c5e72cc.jpg?v=1788658005",
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/9296737a-13ac-40ea-81cc-41053c22ed11_gemini_generated_image_7auugb7auugb7auu.jpg?v=1788658005",
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/885f309f-033b-43c9-8c6c-8345fcd8e47f_enhanced_gemini_generated_image_x10zjrx10zjrx10z.jpg?v=1788658006"
+      ],
+      "description": "Everyday wide-leg sweatpants in a mid-weight, 100% cotton fabric made for year-round wear. Elasticated waistband with a concealed internal drawstring and a minimal, understated graphic.",
+      "details": ["Fit: Relaxed wide-leg", "Colour: Light Heather Grey", "Fabric: 100% cotton"],
+      "featured": false
+    },
+    {
+      "id": "boxy-fit-t-shirt-black",
+      "name": "Boxy Fit T-Shirt",
+      "color": "Black",
+      "group": "boxy-fit-t-shirt",
+      "gender": "men",
+      "collections": ["tops"],
+      "price": 449,
+      "compare_at_price": null,
+      "sizes": [
+        { "size": "S", "in_stock": false },
+        { "size": "M", "in_stock": false },
+        { "size": "L", "in_stock": false }
+      ],
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/82df3a0d-ffbb-4b69-9eb0-8f34118ba14e_gemini_generated_image_ffcvr6ffcvr6ffcv.jpg?v=1788753179",
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/a4157a8b-bda7-4393-8383-f1ba1295bac3_gemini_generated_image_987vm9987vm9987v.png?v=1788753179",
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/3f43406b-d332-4cd4-9927-3fa75da9b6ec_gemini_generated_image_ihliplihliplihli.png?v=1788753179",
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/9e6ebefc-52e1-4239-83d4-254f08bd31c7_gemini_generated_image_upkz64upkz64upkz.png?v=1788753179"
+      ],
+      "description": "A minimalist everyday tee with a relaxed, squared boxy silhouette. Premium cotton that keeps its shape and texture wash after wash. No visible branding or prints, so it works casual or dressed up.",
+      "details": ["Fit: Boxy", "Colour: Black", "Fabric: Premium cotton"],
+      "featured": false
+    },
+    {
+      "id": "boxy-fit-t-shirt-grey",
+      "name": "Boxy Fit T-Shirt",
+      "color": "Grey",
+      "group": "boxy-fit-t-shirt",
+      "gender": "men",
+      "collections": ["tops"],
+      "price": 449,
+      "compare_at_price": null,
+      "sizes": [
+        { "size": "S", "in_stock": false },
+        { "size": "M", "in_stock": false },
+        { "size": "L", "in_stock": false }
+      ],
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/4454b28a-1239-42f0-bf3c-8c1db118a19c_gemini_generated_image_9vul3k9vul3k9vul.png?v=1788753720",
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/c3a176a8-207b-4b53-be5b-ffdb4399b345_gemini_generated_image_k8xikzk8xikzk8xi.png?v=1788753720",
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/85d9e2d6-8be8-4f05-9ec2-bb8a7e305e48_gemini_generated_image_p7yza0p7yza0p7yz.jpg?v=1788753720",
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/25a412df-9376-41e3-9bcb-1eb457d8fb97_gemini_generated_image_ysvi52ysvi52ysvi.png?v=1788753720"
+      ],
+      "description": "A minimalist everyday tee with a relaxed, squared boxy silhouette. Premium cotton that keeps its shape and texture wash after wash. No visible branding or prints, so it works casual or dressed up.",
+      "details": ["Fit: Boxy", "Colour: Grey", "Fabric: Premium cotton"],
+      "featured": false
+    },
+    {
+      "id": "boxy-fit-t-shirt-white",
+      "name": "Boxy Fit T-Shirt",
+      "color": "White",
+      "group": "boxy-fit-t-shirt",
+      "gender": "men",
+      "collections": ["tops"],
+      "price": 449,
+      "compare_at_price": null,
+      "sizes": [
+        { "size": "S", "in_stock": false },
+        { "size": "M", "in_stock": false },
+        { "size": "L", "in_stock": false }
+      ],
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/2d3544e8-1af3-44f4-bd9c-6e29a0f05874_gemini_generated_image_33ejh233ejh233ej.jpg?v=1788753824",
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/bc1a9308-e86b-450d-b1e6-aece6d31877d_gemini_generated_image_diw2a8diw2a8diw2.png?v=1788753824",
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/883798aa-8fe4-46ee-8ccb-0388738ec135_gemini_generated_image_ko91qoko91qoko91.png?v=1788753824",
+        "https://cdn.shopify.com/s/files/1/0835/7314/5836/files/704afa6c-1b68-4f3a-bd88-afada4a1271d_gemini_generated_image_lli4wvlli4wvlli4.png?v=1788753824"
+      ],
+      "description": "A minimalist everyday tee with a relaxed, squared boxy silhouette. Premium cotton that keeps its shape and texture wash after wash. No visible branding or prints, so it works casual or dressed up.",
+      "details": ["Fit: Boxy", "Colour: White", "Fabric: Premium cotton"],
+      "featured": false
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+# Netlify settings for the Rivet.Co store.
+# No build step: Netlify publishes the files as they are.
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+# --- Keep old Shopify links working (Google results, Instagram bio, etc.) ---
+[[redirects]]
+  from = "/pages/men"
+  to = "/shop.html?gender=men"
+  status = 301
+[[redirects]]
+  from = "/pages/women"
+  to = "/shop.html?gender=women"
+  status = 301
+[[redirects]]
+  from = "/pages/contact"
+  to = "/contact.html"
+  status = 301
+[[redirects]]
+  from = "/pages/faq"
+  to = "/faq.html"
+  status = 301
+[[redirects]]
+  from = "/collections"
+  to = "/collections.html"
+  status = 301
+[[redirects]]
+  from = "/collections/all"
+  to = "/shop.html"
+  status = 301
+[[redirects]]
+  from = "/collections/:slug/products/:id"
+  to = "/product.html?id=:id"
+  status = 301
+[[redirects]]
+  from = "/collections/:slug"
+  to = "/shop.html?collection=:slug"
+  status = 301
+[[redirects]]
+  from = "/products/:id"
+  to = "/product.html?id=:id"
+  status = 301
+[[redirects]]
+  from = "/policies/:slug"
+  to = "/policy.html?p=:slug"
+  status = 301
+[[redirects]]
+  from = "/cart"
+  to = "/cart.html"
+  status = 301
+
+# --- Security headers ---
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
+
+# Product/content files change from the admin panel — always check for fresh copies.
+[[headers]]
+  for = "/content/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
