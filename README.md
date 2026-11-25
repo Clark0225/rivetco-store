@@ -1,11 +1,13 @@
-# Rivet.Co store: setup guide
+# Rivet.Co store: setup guide (Cloudflare)
 
 A free-hosted replacement for the Shopify store at rivetcoeg.com.
 
-- **Hosting:** GitHub (stores the files) + Netlify (runs the site). Free plan.
-- **Payments:** Paymob (Visa, Mastercard, Meeza, Apple Pay). The client pays Paymob's per-transaction fee, which is 2.75% + EGP 3 per card payment at the standard rate.
-- **Admin panel:** `yoursite.com/admin`. The client logs in there to edit products, prices, stock, photos, the home page, shipping fees, FAQs and policies. No code needed.
-- **Orders:** every paid order is emailed to the store by Netlify and also appears in the Paymob dashboard.
+- **Hosting:** GitHub (stores the files) + Cloudflare Pages (runs the site). Free plan.
+- **Payments:** Paymob (Visa, Mastercard, Meeza, Apple Pay). Paymob charges a fee per payment.
+- **Order and contact emails:** sent through Resend (free plan).
+- **Admin panel:** `yoursite/admin`. The client logs in with a GitHub account to edit products, prices, stock, photos, the home page, shipping fees, FAQs and policies.
+
+> Why not Netlify: since June 2026, `*.netlify.app` sites (and many Netlify custom domains) don't open from Egyptian internet providers without a VPN.
 
 ---
 
@@ -13,106 +15,112 @@ A free-hosted replacement for the Shopify store at rivetcoeg.com.
 
 | Path | What it is |
 |---|---|
-| `index.html`, `shop.html`, `product.html`, `cart.html`, `checkout.html`, `thank-you.html`, `collections.html`, `faq.html`, `policy.html`, `contact.html`, `404.html` | The pages |
-| `content/*.json` | All store content: products, home page, settings, FAQ, policies. The admin panel edits these. |
-| `assets/` | Design (CSS), site logic (JS), favicon |
-| `admin/` | The admin panel |
-| `netlify/functions/` | The payment code that runs on Netlify's servers |
-| `netlify.toml` | Netlify settings, plus redirects so old Shopify links keep working |
+| `public/` | The website itself. Cloudflare publishes only this folder. |
+| `public/content/*.json` | All store content. The admin panel edits these. |
+| `public/admin/` | The admin panel |
+| `public/_redirects` | Keeps old Shopify links working |
+| `public/_headers` | Security and caching headers |
+| `functions/api/` | Code that runs on Cloudflare: payment, Paymob callback, contact form, admin login |
+| `README.md` | This guide (not published on the site) |
 
 ---
 
 ## Step 1: Put the files on GitHub
 
-1. Sign in at github.com and click **New repository**. Name it `rivetco-store`. **Private** is fine. Click **Create repository**.
-2. On the new repo page, click **uploading an existing file**.
-3. Unzip `rivetco-store.zip` and drag **everything inside the folder** (not the folder itself) into the upload box.
-4. Click **Commit changes**.
+The old upload was laid out for Netlify. Start the repo fresh so old files don't get mixed in:
 
-## Step 2: Put the site on Netlify
+1. Open the repo → **Settings** → scroll to the bottom → **Delete this repository**. (This also disconnects the old Netlify site.)
+2. Create it again: **New repository** → name `rivetco-store` → **Private** → **Create repository**.
+3. Click **uploading an existing file**. Unzip `rivetco-store.zip`, open the `rivetco-store` folder, press **Ctrl+A**, and drag everything into the upload box.
+4. Check that `public` and `functions` appear in the list, then **Commit changes**.
 
-1. Sign in at app.netlify.com (use "Sign up with GitHub").
-2. Go to **Add new site → Import an existing project → GitHub** and pick `rivetco-store`.
-3. Leave **Build command** empty. Set **Publish directory** to `.` (the netlify.toml file already does this).
-4. Click **Deploy**. You'll get a free address such as `rivetco-store.netlify.app`.
+## Step 2: Put the site on Cloudflare Pages
 
-## Step 3: Turn on order and contact emails (Netlify Forms)
+1. Sign up at dash.cloudflare.com (free).
+2. Go to **Workers & Pages → Create → Pages** tab → **Connect to Git**. Make sure it's **Pages**, not Workers.
+3. Connect GitHub, allow access to `rivetco-store` only, and pick the repo.
+4. Build settings:
+   - Framework preset: **None**
+   - Build command: leave **empty**
+   - Build output directory: **`public`**
+5. **Save and Deploy.** The site will be at `https://rivetco-store.pages.dev` (or a similar name).
+6. **Test on Egyptian internet** (Wi-Fi and mobile data) before going further.
 
-1. In Netlify, open the site, then go to **Forms** and click **Enable form detection**.
-2. Under **Deploys**, click **Trigger deploy → Deploy site** so Netlify finds the forms.
-3. Two forms will appear:
-   - `paid-orders`: one entry per successful payment
-   - `contact`: messages from the Contact page
-4. Under **Forms → Form notifications → Add notification → Email notification**, add the client's email for each form.
+Every time something changes on GitHub (including Publish in the admin panel), Cloudflare updates the site in about a minute.
 
-## Step 4: Give the client the admin panel
+## Step 3: Add the settings (environment variables)
 
-1. In Netlify, go to **Site configuration → Identity** and click **Enable Identity**.
-2. Under **Registration**, choose **Invite only**. This is important: otherwise anyone could sign up.
-3. Under **Identity → Services → Git Gateway**, click **Enable Git Gateway**.
-4. Go to the **Identity** tab and click **Invite users**. Enter the client's email (add yours too).
-5. The client opens the invite email, sets a password, and lands on `/admin`. From then on they log in at `yoursite.com/admin`.
+In Cloudflare: your Pages project → **Settings → Variables and Secrets → Add**. Use type **Secret** for anything marked secret. After adding or changing any, go to **Deployments** → latest → **⋯ → Retry deployment** so the site picks them up.
 
-When the client clicks **Publish** in the admin panel, the change is saved to GitHub and the live site updates in about a minute.
+| Name | What | Type |
+|---|---|---|
+| `STORE_EMAIL` | Where order and contact emails go | Text |
+| `RESEND_API_KEY` | From Resend (Step 4) | Secret |
+| `GITHUB_CLIENT_ID` | From GitHub (Step 5) | Text |
+| `GITHUB_CLIENT_SECRET` | From GitHub (Step 5) | Secret |
+| `PAYMOB_SECRET_KEY` | Paymob → Settings → Account info | Secret |
+| `PAYMOB_PUBLIC_KEY` | Paymob → Settings → Account info | Text |
+| `PAYMOB_INTEGRATION_IDS` | Paymob → Developers → Payment integrations, comma-separated | Text |
+| `PAYMOB_HMAC_SECRET` | Paymob → Settings → Account info → HMAC | Secret |
 
-## Step 5: Connect Paymob
+Anything missing just switches that feature off with a friendly message. Nothing breaks.
 
-The client needs a Paymob merchant account. Paymob verifies the business, so the client may need their commercial registration and tax card.
+## Step 4: Order and contact emails (Resend)
 
-1. In the Paymob dashboard, under **Settings → Account info**, copy:
-   - **Secret key**
-   - **Public key**
-   - **HMAC**
-2. Under **Developers → Payment integrations**, note the **Integration ID** of each payment method: online card, and Apple Pay if it's enabled.
-3. In Netlify, go to **Site configuration → Environment variables** and add:
+1. Sign up at resend.com **using the store's email address** (the one you'll put in `STORE_EMAIL`).
+2. **API Keys → Create API key** → copy it into `RESEND_API_KEY`.
+3. Until a domain is verified, Resend only delivers to the email address of the Resend account, so `STORE_EMAIL` must be that same address.
+4. Later, once rivetcoeg.com is set up: **Domains → Add domain** in Resend, then add `EMAIL_FROM` = `Rivet.Co Store <orders@rivetcoeg.com>`. After that, `STORE_EMAIL` can be any address (comma-separate several).
 
-   | Key | Value |
-   |---|---|
-   | `PAYMOB_SECRET_KEY` | the Secret key |
-   | `PAYMOB_PUBLIC_KEY` | the Public key |
-   | `PAYMOB_INTEGRATION_IDS` | the integration IDs, comma-separated, e.g. `4851234,4851240` |
-   | `PAYMOB_HMAC_SECRET` | the HMAC |
+Each paid order emails the store with the customer's name, phone, address, items and amount. Replying to the email replies to the customer. Every payment is also in the Paymob dashboard.
 
-4. Redeploy: **Deploys → Trigger deploy**.
-5. In Paymob, for each integration, set:
-   - **Transaction processed callback:** `https://YOUR-SITE/.netlify/functions/paymob-webhook`
-   - **Transaction response callback:** `https://YOUR-SITE/thank-you.html`
+## Step 5: Admin panel login (GitHub)
 
-**Test first.** Use Paymob's *test* keys and test integration IDs. Place an order with a Paymob test card and check three things:
-- the thank-you page appears
-- the cart empties
-- a `paid-orders` entry and email arrive
+The admin panel saves edits straight to the GitHub repo, so whoever edits needs a GitHub account with access to the repo.
 
-Then switch the four variables to the *live* values and redeploy.
+1. Go to github.com/settings/developers → **OAuth Apps → New OAuth App**.
+   - Application name: `Rivet.Co admin`
+   - Homepage URL: `https://rivetco-store.pages.dev` (your real Pages address)
+   - Authorization callback URL: `https://rivetco-store.pages.dev/api/callback`
+2. **Register application** → copy the **Client ID** into `GITHUB_CLIENT_ID`.
+3. **Generate a new client secret** → copy it into `GITHUB_CLIENT_SECRET`.
+4. Redeploy (Step 3), then open `https://rivetco-store.pages.dev/admin` → **Login with GitHub**.
+5. For the client: they create a free GitHub account; you add them under the repo's **Settings → Collaborators** (they accept the email invite). Then they log in at `/admin` the same way.
 
-Until the keys are added, the checkout shows "Online payment isn't switched on yet". Nothing breaks.
+If the repo later moves to the client's GitHub account, change `repo:` at the top of `public/admin/config.yml`. When the domain changes, update both URLs in the OAuth App.
 
-## Step 6: Move rivetcoeg.com over (do this last)
+## Step 6: Connect Paymob
 
-1. Netlify: **Domain management → Add a domain** → `rivetcoeg.com`. Follow its DNS instructions at the domain registrar, or in Shopify if the domain was bought through Shopify.
-2. Netlify adds free HTTPS automatically.
-3. Update the Paymob callback URLs to the real domain.
-4. **Before cancelling Shopify:** the product photos are currently loaded from Shopify's servers and will disappear when the store closes. Download each photo from the current site and re-upload it in **Admin → Products**. Do the same for the home page images.
+1. Add the four `PAYMOB_…` variables (Step 3) and redeploy.
+2. In Paymob, for each payment integration set:
+   - **Transaction processed callback:** `https://YOUR-SITE/api/paymob-webhook`
+   - **Transaction response callback:** `https://YOUR-SITE/thank-you`
+3. Test with Paymob's **test** keys and a test card first: check the thank-you page shows, the cart empties, and the order email arrives. Then switch to the **live** keys and redeploy.
 
-Old Shopify links (`/products/...`, `/collections/...`, `/pages/...`, `/policies/...`) automatically redirect to the new pages.
+## Step 7: Move rivetcoeg.com (do this last)
+
+1. Before cancelling Shopify, transfer the domain out: Shopify → Settings → Domains → rivetcoeg.com → **Transfer → Transfer to another provider**. You can transfer it to Cloudflare Registrar (add the domain to Cloudflare first) or to another registrar such as Namecheap. Transfers can take up to 7–10 days.
+2. In the Pages project → **Custom domains → Set up a custom domain** → `rivetcoeg.com`, and also `www.rivetcoeg.com`.
+3. Update the Paymob callback URLs and the GitHub OAuth App URLs to the real domain.
+4. **Before cancelling Shopify:** product and home page photos still load from Shopify's servers. Re-upload each one in the admin panel. Also export orders and customers from Shopify as CSV.
+5. Then cancel Shopify.
 
 ---
 
 ## Check with the client before launch
 
-- **Shipping fees:** I used placeholders: **70 EGP** for Cairo & Giza and **100 EGP** for other governorates. Set the real fees in **Admin → Store settings → Shipping**.
-- **Free shipping threshold:** the old site's banner says **1000 EGP**, but its Shipping Policy says **2000 EGP**. The new site uses 1000. Confirm which is right.
-- **Email:** the old footer shows `info@rivetcoeg.com`, but its link goes to `rivet.co.eg@gmail.com`. Confirm which inbox is real.
-- **Policies:** shipping and refunds are rewritten from the old site. Privacy and terms are short drafts. The client should review all four, or paste their exact text, in **Admin → Policies**.
-- **Categories:** the boxy tees are filed under Men. On Shopify, the Jet Black sweatpants description said "Light Heather Grey"; that's corrected here.
-- **Track order / account login:** these were on Shopify but are not on this site. Customers contact the store instead. This is mentioned in the FAQ.
+- **Shipping fees:** placeholders are 70 EGP for Cairo & Giza and 100 EGP elsewhere. Set the real fees in Admin → Store settings → Shipping.
+- **Free shipping:** the old site's banner says 1000 EGP, its shipping policy says 2000 EGP. The new site uses 1000.
+- **Email:** the old footer shows info@rivetcoeg.com but links to rivet.co.eg@gmail.com.
+- **Policies:** shipping and refund are rewritten from the old site; privacy and terms are short drafts.
+- **Not included:** customer accounts and order tracking (customers contact the store instead).
 
 ## Costs
 
-- GitHub and Netlify: free plans. Netlify's free plan has monthly usage limits; a small store fits comfortably. Check **Netlify → Usage** occasionally.
-- Paymob: fee per payment. No monthly fee at the standard rate.
-- Domain: the yearly renewal of rivetcoeg.com still applies.
+- GitHub, Cloudflare Pages, Resend: free plans. Cloudflare's free plan allows 500 deploys a month and 100,000 function requests a day; a small store fits comfortably.
+- Paymob: fee per payment.
+- Domain: yearly renewal of rivetcoeg.com.
 
-## Editing content without the admin panel
+## Editing without the admin panel
 
-Every product and setting is in `content/*.json`. Edit the file on GitHub (pencil icon) and commit. Netlify redeploys automatically.
+Every product and setting is in `public/content/*.json`. Edit the file on GitHub (pencil icon) and commit. Cloudflare redeploys automatically.

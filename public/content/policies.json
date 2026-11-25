@@ -1,0 +1,24 @@
+{
+  "policies": [
+    {
+      "slug": "shipping-policy",
+      "title": "Shipping Policy",
+      "body": "## Processing\nOrders are processed within 1 business day after payment is confirmed. Orders placed on weekends or public holidays are processed the next business day.\n\n## Delivery times\n- Cairo & Giza: 1–3 business days\n- Other governorates: 2–5 business days\n\nDelivery times may vary during sales, holidays or unforeseen circumstances.\n\n## Shipping fees\nShipping fees are calculated at checkout based on your governorate. Orders over 1000 EGP ship free.\n\n## Tracking\nOnce your order ships, you'll receive a confirmation message with tracking details.\n\n## Address accuracy\nPlease provide an accurate shipping address and phone number. Rivet.Co is not responsible for delays caused by incorrect details.\n\n## Failed deliveries\nOrders may be returned to us if the address is incorrect, delivery attempts repeatedly fail, or the customer is unavailable. Reshipping may incur additional charges.\n\n## Questions\nContact Customer Support at info@rivetcoeg.com."
+    },
+    {
+      "slug": "refund-policy",
+      "title": "Return & Refund Policy",
+      "body": "## Returns\nYou have 14 days after receiving your item to request a return. To be eligible, the item must be:\n- In the same condition you received it\n- Unworn and unused, with tags attached\n- In its original packaging\n- Accompanied by your receipt or proof of purchase\n\nTo start a return, email info@rivetcoeg.com.\n\n## Damaged, defective or wrong items\nPlease inspect your order on arrival and contact us immediately if anything is wrong so we can make it right.\n\n## Non-returnable items\nSale items and gift cards cannot be returned.\n\n## Exchanges\nThe fastest way to get what you want is to return the item you have and, once the return is accepted, place a separate order for the new item.\n\n## Refunds\nWe'll notify you once we've received and inspected your return. Approved refunds go back to your original payment method within 10 business days. Your bank or card issuer may take extra time to post it. If more than 15 business days have passed since approval, please contact us."
+    },
+    {
+      "slug": "privacy-policy",
+      "title": "Privacy Policy",
+      "body": "## What we collect\nWhen you place an order we collect your name, phone number, email and delivery address so we can process and deliver it. When you contact us, we keep your message so we can reply.\n\n## Payments\nCard payments are handled by our payment provider, Paymob. Your card details are entered on their secure page and never stored on our website.\n\n## How we use your information\nWe use your details only to fulfil orders, provide support and, if you agree, tell you about new products. We share them only with the providers needed to run the store, such as payment and delivery partners.\n\n## Your choices\nYou can ask us to see, correct or delete your information at any time by emailing info@rivetcoeg.com."
+    },
+    {
+      "slug": "terms-of-service",
+      "title": "Terms of Service",
+      "body": "## Overview\nBy using this website and placing an order, you agree to these terms.\n\n## Products and pricing\nWe do our best to show products, colours and prices accurately. Prices are in Egyptian pounds and may change without notice. If an item is listed at an incorrect price, we may cancel the order and refund you in full.\n\n## Orders\nAn order is confirmed once payment is successful. We may cancel an order if an item is out of stock, in which case you'll receive a full refund.\n\n## Shipping and returns\nShipping and returns are covered by our Shipping Policy and Return & Refund Policy.\n\n## Contact\nQuestions about these terms can be sent to info@rivetcoeg.com."
+    }
+  ]
+}

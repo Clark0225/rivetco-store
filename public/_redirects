@@ -1,0 +1,11 @@
+# Keep old Shopify links working (Google results, Instagram bio, etc.)
+# (Cloudflare already serves /cart, /collections, /shop etc. without ".html".)
+/pages/men                          /shop?gender=men                 301
+/pages/women                        /shop?gender=women               301
+/pages/contact                      /contact                         301
+/pages/faq                          /faq                             301
+/collections/all                    /shop                            301
+/collections/:slug/products/:id     /product?id=:id                  301
+/collections/:slug                  /shop?collection=:slug           301
+/products/:id                       /product?id=:id                  301
+/policies/:slug                     /policy?p=:slug                  301
